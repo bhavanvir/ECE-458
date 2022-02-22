@@ -1,11 +1,11 @@
 import socket
 
-UDP_IP = "134.87.141.252"
-UDP_PORT = 8500
+c = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
-while True:
-    message = bytes(input(), "utf-8")
+c.connect(("127.0.0.1", 9300))
 
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+userInput = input("Enter 5 numbers separated by spaces: ")
 
-    sock.sendto(message, (UDP_IP, UDP_PORT))
+c.send(bytes(userInput,'utf-8'))
+
+print(c.recv(1024).decode())
